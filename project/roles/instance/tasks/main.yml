@@ -6,7 +6,7 @@
                 region=us-west-2
                 keypair=ansible1
                 count=1
-                group_id=sg-875c52fa
+                group_id=sg-b54effc8
                 wait=true
   register: ec2
 
