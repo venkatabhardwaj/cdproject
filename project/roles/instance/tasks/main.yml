@@ -2,11 +2,11 @@
 - name: Launching an EC2 Instance
   local_action: ec2
                 instance_type=t2.micro
-                image=ami-9fa343e7
-                region=us-west-2
-                keypair=ansible1
+                image=ami-4bf3d731
+                region=us-east-1
+                keypair=devops
                 count=1
-                group_id=sg-b54effc8
+                group_id=sg-abc453dc
                 wait=true
   register: ec2
 
@@ -15,9 +15,9 @@
     hostname={{ item.public_ip }} 
     groups=ec2hosts 
     host_key_checking=False 
-    ansible_ssh_user=ec2-user 
+    ansible_ssh_user=centos 
     ansible_ssh_port=22
-    ansible_ssh_private_key_file=/root/cicdproject/project/ansible1.pem
+    ansible_ssh_private_key_file=./devops.pem
 
   with_items: "{{ ec2.instances }}"
 
