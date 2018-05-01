@@ -2,11 +2,11 @@
 - name: Launching an EC2 Instance
   local_action: ec2
                 instance_type=t2.micro
-                image=ami-4bf3d731
-                region=us-east-1
-                keypair=devops
+                image=ami-78485818
+                region=us-west-1
+                keypair=Task
                 count=1
-                group_id=sg-9d0b6fea
+                group_id=sg-db482da2
                 wait=true
   register: ec2
 
@@ -17,7 +17,7 @@
     host_key_checking=False 
     ansible_ssh_user=root
     ansible_ssh_port=22
-    ansible_ssh_private_key_file=./devops.pem
+    ansible_ssh_private_key_file=./Task.pem
 
   with_items: "{{ ec2.instances }}"
 
