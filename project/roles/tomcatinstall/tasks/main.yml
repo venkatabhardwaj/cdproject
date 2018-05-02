@@ -36,10 +36,10 @@
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
 
-#- name: deploy iptables rules
-#  template: src=iptables-save dest=/etc/sysconfig/iptables
-#  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
-#  notify: restart iptables
+- name: deploy iptables rules
+  template: src=iptables-save dest=/etc/sysconfig/iptables
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'"
+# notify: restart iptables
 
 #- name: insert firewalld rule for tomcat http port
 #  firewalld: port={{ http_port }}/tcp permanent=true state=enabled immediate=yes
@@ -49,8 +49,8 @@
 #  firewalld: port={{ https_port }}/tcp permanent=true state=enabled immediate=yes
 #  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
 
-- name: wait for tomcat to start
-  wait_for: port={{http_port}}
+#- name: wait for tomcat to start
+ # wait_for: port={{http_port}}
 
-- name: Deploy War File
-  maven_artifact: group_id=bharath.org artifact_id=application extension=war repository_url=http://54.153.77.32:8080/nexus/content/repositories/snapshots/ username=admin password=admin123  dest=~/usr/hold/
+#- name: Deploy War File
+ #maven_artifact: group_id=bharath.org artifact_id=application extension=war repository_url=http://54.153.77.32:8080/nexus/content/repositories/snapshots/ username=admin password=admin123  dest=~/usr/hold/
