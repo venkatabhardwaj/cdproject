@@ -1,13 +1,19 @@
 ---
-- name: Launching an EC2 Instance
-  local_action: ec2
-                instance_type=t2.micro
-                image=ami-78485818
-                region=us-west-1
-                keypair=Task
-                count=1
-                group_id=sg-db482da2
-                wait=true
+- name: Create an ec2 instance
+  ec2:
+     aws_access_key: AKIAIGMDFC4T5UMDWBLA
+     aws_secret_key: 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
+     key_name: "{{ keypair }}"
+     group: default # security group name
+     instance_type: "{{ instance_type}}"
+     image: "{{ ami }}"
+     wait: true
+     region: "{{ region }}"
+     count: 1  # default
+     count_tag:
+       Name: Demo
+     instance_tags:
+       Name: Demo
   register: ec2
 
 - name: Add all instance public IPs to host group

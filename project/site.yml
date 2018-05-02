@@ -2,7 +2,7 @@
 - name: Spinup Instance 
   hosts: localhost
   user: root
-  become: yes
+  become: true
   become_method: sudo
   
   roles:

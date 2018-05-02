@@ -1,0 +1,9 @@
+---
+ region: us-west-1
+ instance_type: t2.micro
+ ami: ami-78485818
+ keypair: Task
+ count: 1
+ group_id: sg-db482da2
+ wait: true
+
